@@ -40,15 +40,12 @@ def add_student(students):
 
         if ansr == "Y":
             students.append(student)
+            save_student(students)
             print("Student Details Added")
-        else:
-            student.clear()
-            print("All details cleared")
 
         next = input ("Add Another Student? (Y/N): ").strip().upper()
         if next != "Y":
             break
-
     
 
 def find_student(students):
@@ -117,7 +114,7 @@ def find_student(students):
                 
 
         case 4:
-            student_course = input("Enter Course: ")
+            student_course = input("Enter Course: ").strip().upper()
             print(f"Listing Student with Course '{student_course}'")
             sleep(1)
             print(".")
@@ -166,7 +163,7 @@ def update_student(students):
 
             
         case 2:
-            student_name = input("Enter Name: ")
+            student_name = input("Enter Name: ").strip().upper()
             found_students = search_student(students, "Name", student_name)
 
             if not found_students:
@@ -207,7 +204,7 @@ def update_student(students):
 
     match choice:
         case 1:
-            ansr = input("Enter New Name: ")
+            ansr = input("Enter New Name: ").strip().upper()
             print(f"Changing Name from {student["Name"]} to {ansr}")
 
             choice = input("Continue? (Y/N)").strip().upper()
@@ -219,7 +216,7 @@ def update_student(students):
 
         case 2:
             ansr = int(input("Enter New Age: "))
-            print(f"Changing Name from {student["Age"]} to {ansr}")
+            print(f"Changing Age from {student["Age"]} to {ansr}")
         
             choice = input("Continue? (Y/N)").strip().upper()
             if choice == "Y":
@@ -229,19 +226,57 @@ def update_student(students):
 
 
         case 3:
-            ansr = input("Enter New Course: ")
-            print(f"Changing Name from {student["Course"]} to {ansr}")
+            ansr = input("Enter New Course: ").strip().upper()
+            print(f"Changing Course from {student["Course"]} to {ansr}")
         
             choice = input("Continue? (Y/N)").strip().upper()
             if choice == "Y":
                 student["Course"] = ansr
             else:
                 return
+    save_student(students)
 
 
+def delete_student(students):
+    print("""
+        ========== DELETE STUDENT ==========
+    
+        Find student using:
+    
+        [1] ID
+        [2] Name
+        """)
 
-def delete_student():
-    pass
+    choice = int(input("Choose a Number (1-2): "))
+
+    match choice:
+        case 1:
+            choice = int(input("Enter ID: "))
+            found_students = search_student(students,"ID",choice)
+
+            if not found_students:
+                print("Match Not Found")
+            else:
+                students.remove(found_students[0])
+                save_student(students)
+
+
+        case 2:
+            choice = input("Enter Name: ").strip().upper()
+            found_students = search_student(students,"Name",choice)
+
+            if not found_students:
+                print("Match Not Found")
+            else:
+                for i,student in enumerate(found_students, start=1):
+                    print(f"[{i}] {student}")
+
+                choice = int(input("Which Student to Delete? : "))
+
+                student = found_students[choice - 1]
+
+                students.remove(student)
+                save_student(students)
 
 def load_student():
     with open("students.json", "r") as f:
@@ -252,6 +287,3 @@ def save_student(students):
         json.dump(students, f, indent=4)
 
 
-students = load_student()
-
-find_student(students)
