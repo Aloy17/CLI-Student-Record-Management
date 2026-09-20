@@ -1,5 +1,8 @@
 import json
 from time import sleep
+from pathlib import Path
+
+DATA_FILE = Path(__file__).parent / "students.json"
 
 def search_student(students, field, value):
 
@@ -55,6 +58,8 @@ def add_student(students):
             students.append(student)
             save_student(students)
             print("Student added successfully.")
+        else:
+            print("Student addition cancelled.")
 
         next = input ("Add another student? (Y/N): ").strip().upper()
         if next != "Y":
@@ -145,6 +150,9 @@ def find_student(students): #Exception Handling for ensuring user types correct 
             for student in students:
                 if student["Age"] == student_age:
                     print(student)
+
+            if not any(student["Age"] == student_age for student in students):
+                print("No matching student records found.")
                 
 
         case 4:
@@ -159,6 +167,9 @@ def find_student(students): #Exception Handling for ensuring user types correct 
                 if student["Course"] == student_course:
                     print(student)
 
+            if not any(student["Course"] == student_course for student in students):
+                print("No matching student records found.")
+
         case 5:
             print("Displaying all student records:")
             sleep(1)
@@ -168,6 +179,9 @@ def find_student(students): #Exception Handling for ensuring user types correct 
             
             for student in students:
                 print(student)
+
+            if not students:
+                print("No student records found.")
 
         case _:
             print("Invalid Choice")
@@ -279,6 +293,7 @@ def update_student(students): #Exception Handling for ensuring user types correc
             if choice == "Y":
                 student["Name"] = ansr
             else:
+                print("Update cancelled.")
                 return
 
 
@@ -296,6 +311,7 @@ def update_student(students): #Exception Handling for ensuring user types correc
             if choice == "Y":
                 student["Age"] = ansr
             else:
+                print("Update cancelled.")
                 return
 
 
@@ -307,8 +323,10 @@ def update_student(students): #Exception Handling for ensuring user types correc
             if choice == "Y":
                 student["Course"] = ansr
             else:
+                print("Update cancelled.")
                 return
     save_student(students)
+    print("Student record updated successfully.")
 
 
 def delete_student(students):
@@ -348,6 +366,7 @@ def delete_student(students):
             else:
                 students.remove(found_students[0])
                 save_student(students)
+                print("Student deleted successfully.")
 
 
         case 2:
@@ -377,14 +396,14 @@ def delete_student(students):
 
 def load_student():
     try:
-        with open("students.json", "r") as f:
+        with open(DATA_FILE, "r") as f:
             return json.load(f)
     except FileNotFoundError:
-        print("Student data file not found. Starting with an empty student list.")
-        return []
+        print("Student data file not found.")
+        return None
 
 def save_student(students): 
-    with open("students.json", "w") as f:
+    with open(DATA_FILE, "w") as f:
         json.dump(students, f, indent=4)
         
    
