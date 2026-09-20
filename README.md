@@ -4,7 +4,7 @@
 
 A menu driven console application written in Python for managing student records. It allows a user to add, view, search, update and delete records, and stores them in a JSON file so that data is retained after the program is closed.
 
-This project was developed as Assignment 1 (Mini Project) for Python Programming and Relational Database, MCA Semester I.
+
 
 ## Features
 
