@@ -163,7 +163,8 @@ Enter Student ID: 105
 
 **Missing data file handled**
 
-<img width="647" height="291" alt="Screenshot 2026-09-20 at 10 37 24 PM" src="https://github.com/user-attachments/assets/606696d2-55b0-42ee-a275-428f00302955" />
+<img width="1434" height="538" alt="image" src="https://github.com/user-attachments/assets/a2fd95c1-9be0-4096-b8e4-3d7176767d80" />
+
 
 
 
