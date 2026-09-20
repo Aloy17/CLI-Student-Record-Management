@@ -96,20 +96,19 @@ def find_student(students): #Exception Handling for ensuring user types correct 
                 except ValueError:
                     print("Invalid input. Please enter a valid number.")
 
-                print(f"Searching for student with ID: {student_id}")
+            print(f"Searching for student with ID: {student_id}")
+            sleep(1)
+            print(".")
+            sleep(1)
+            print(".")
 
-                sleep(1)
-                print(".")
-                sleep(1)
-                print(".")
+            found_students = search_student(students, "ID", student_id)
 
-                found_students = search_student(students, "ID", student_id)
-
-                if found_students:
-                    for student in found_students:
-                        print(student)
-                else:
-                    print("No matching student records found.")
+            if found_students:
+                for student in found_students:
+                    print(student)
+            else:
+                print("No matching student records found.")
 
 
         case 2:
@@ -358,23 +357,23 @@ def delete_student(students):
             if not found_students:
                 print("No matching student record found.")
             else:
-                for i,student in enumerate(found_students, start=1):
+                for i, student in enumerate(found_students, start=1):
                     print(f"[{i}] {student}")
 
                 while True:
                     try:
                         choice = int(input("Select the student you want to delete: "))
-                        if not 1<= choice <= len(found_students):
+                        if not 1 <= choice <= len(found_students):
                             print("Invalid selection. Please choose a number from the list above.")
                         else:
                             break
-
                     except ValueError:
                         print("Invalid input. Please enter a valid number.")
-                student = found_students[choice - 1]
 
-            students.remove(student)
-            save_student(students)
+                student = found_students[choice - 1]
+                students.remove(student)
+                save_student(students)
+                print("Student deleted successfully.")
 
 def load_student():
     try:
