@@ -23,7 +23,7 @@ def main():
 
     while True:
 
-        choice = input("Enter your choice [1-4] OR Q").strip().upper()
+        choice = input("Enter your choice [1-4] OR Q: ").strip().upper()
 
         match choice:
             case "1":
