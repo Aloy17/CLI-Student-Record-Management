@@ -399,7 +399,6 @@ def load_student():
         with open(DATA_FILE, "r") as f:
             return json.load(f)
     except FileNotFoundError:
-        print("Student data file not found.")
         return None
 
 def save_student(students): 

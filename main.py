@@ -1,10 +1,7 @@
 import student_operations as st
 
 def main():
-    students = st.load_student()
-
-    while True:
-        print("""
+    print("""
     ╔══════════════════════════════════════════╗
     ║       STUDENT RECORD MANAGEMENT          ║
     ╠══════════════════════════════════════════╣
@@ -18,6 +15,13 @@ def main():
     ║                                          ║
     ╚══════════════════════════════════════════╝
     """)
+
+    students = st.load_student()
+    if students is None:
+        print("Unable to start the application because the student data file is missing.")
+        return
+
+    while True:
 
         choice = input("Enter your choice [1-4] OR Q").strip().upper()
 
