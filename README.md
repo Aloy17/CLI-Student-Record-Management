@@ -144,9 +144,5 @@ Enter Student ID: 105
 
 ![Missing data file](screenshots/11_file_not_found.png)
 
-## GitHub Repository Details
 
-* Repository: Aloy17/CLI-Student-Record-Management
-* URL: https://github.com/Aloy17/CLI-Student-Record-Management
-* Branch: main
-* Author: [Your Full Name], MCA Semester I, [Institution Name]
+
